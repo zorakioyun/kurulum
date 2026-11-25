@@ -17,9 +17,7 @@ $KaynakAdres = "ufuk.me.uk/kurulum"
 #  Komutlari iki suslu parantezin arasina, her satira bir tane yaz.
 # ----------------------------------------------------------
 $OzelKomutlar = {
-  	slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
-	slmgr /skms kms.msguides.com
-	slmgr /ato
+    # buraya komutlar gelecek
 }
 
 # ----------------------------------------------------------
@@ -348,9 +346,11 @@ function Sor-Temizlik {
     Baslik "TEMIZLIK SECIMI"
     foreach ($k in $TemizlikSecenekleri.Keys) { Yaz ("  {0,2}) {1}" -f $k, $TemizlikSecenekleri[$k]) }
     Yaz "`nNumaralari virgulle yaz (ornek: 1,2,5)." "Yellow"
-    Yaz "Enter = Xbox haric hepsi   |   0 = hicbiri" "Yellow"
+    Yaz "  11) HEPSI (Xbox dahil)" "White"
+    Yaz "`nEnter = Xbox haric hepsi   |   11 = hepsi   |   0 = hicbiri" "Yellow"
     $cevap = (Read-Host "Secim").Trim()
     if ($cevap -eq "")  { return $VarsayilanTemizlik }
+    if ($cevap -eq "11") { return @($TemizlikSecenekleri.Keys) }
     if ($cevap -eq "0") { return @() }
     return ($cevap -split "[,\s]+" | Where-Object { $TemizlikSecenekleri.Contains($_) })
 }
